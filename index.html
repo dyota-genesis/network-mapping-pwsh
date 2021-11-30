@@ -1,0 +1,75 @@
+
+<head>
+  <style>
+    body {
+        font-family: 'Arial';
+        margin-left: 25%;
+        margin-right: 25%;
+        line-height: 4vh;
+    }
+    
+    aside:before {
+        content: '❗ ';
+    }
+    
+    aside {
+        font-style: italic;
+    }
+    
+    code {
+        color: blue;
+        font-size: x-large;
+    }
+  </style>
+</head>
+<body>
+  <h1>What is this? </h1>
+  <p>This series of scripts will help with moving all of your mapped network drives (J: and so on) from your old computer to your new computer.</p>
+  <p>It will:</p>
+  <ol>
+    <li>Get all of the network drives from your <em>old computer</em></li>
+    <li>Put the drive letters and addresses into a text file</li>
+    <li>Read this text file and map all of your drives on your new computer</li>
+  </ol>
+  <h1>How do I do it? </h1>
+  <h2>On your old computer</h2>
+  <ol>
+    <li>Download <a class="file" name="Get-DriveAddresses.ps1">this script</a> and save it somewhere on your computer</li>
+    <li>Right-click on (<code>Get-DriveAddresses.ps1</code>) and click on "Run with PowerShell" to run it
+      <aside>If this doesn't work, talk to Dyota or Lucas</aside>
+    </li>
+    <li>It should have created a file called <code>DriveAddresses.csv</code>, in the same folder</li>
+    <li>Take this file outside of your computer somehow (put it on a USB, email it to yourself, etc.)</li>
+  </ol>
+  <h2>On your new computer</h2>
+  <ol>
+    <li>Download <a class="file" name="Set-DriveAddresses.ps1">this other script</a> and save it somewhere on your computer</li>
+    <li>Put your file <code>DriveAddresses.csv</code> <em>in the same folder</em></li>
+    <li>Before doing the next step, <em>double check that you have no drive letter naming conflicts</em>. 
+      <ul> 
+        <li>If you need to change drive names, open up <code>DriveAddresses.csv</code> directly and change the drive letters in there</li>
+        <li>For example, if you already have a J: Drive on your new computer, make sure that your <code>DriveAddresses.csv</code> file doesn't have a J: on it - replace that J with another letter</li>
+      </ul>
+    </li>
+    <li>Right-click on the script file (<code>Set-DriveAddresses.ps1</code>) and click on "Run with PowerShell" to run it
+      <aside>If this doesn't work, talk to Dyota or Lucas</aside>
+    </li>
+    <li>Check My Computer / This PC. You should have all of your previous drives mapped on your new computer.</li>
+  </ol>
+  <h2>What happens if "Run with PowerShell" doesn't work?</h2>
+  <p>You will need to open PowerShell and run the scripts from there</p>
+  <p>If it still doesn't work, the Execution Policy will need to be changed. <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.2">Check the docs here.</a></p>
+  <p>Can do a one-off unblock by running <code>Unblock-File -Path ".\Get-DriveAddresses.ps1"</code></p>
+</body>
+<script>
+  let anchors = document.getElementsByTagName('a')
+  for(var i=0; i<anchors.length; i++) {
+      anchors[i].target = '_blank';
+  }
+  
+  let files = document.getElementsByClassName('file')
+  let rootUrl = 'https://technip.sharepoint.com/sites/PerthGenesis/_layouts/15/download.aspx?SourceUrl=/sites/PerthGenesis/Shared%20Documents/General/New%20Office/New%20laptops%20-%20remap%20network%20drives/'
+  for(var i=0; i<files.length; i++) {
+      files[i].href = rootUrl + files[i].name
+  }
+</script>
