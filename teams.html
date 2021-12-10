@@ -1,0 +1,71 @@
+<head>
+    <style>
+        body {
+            font-family: 'Arial';
+            margin-left: 25%;
+            margin-right: 25%;
+            line-height: 4vh;
+        }
+
+        aside:before {
+            content: '❗ ';
+        }
+
+        aside {
+            font-style: italic;
+        }
+
+        code {
+            color: blue;
+            font-size: x-large;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>What is this? </h1>
+    <p>Are you annoyed with navigated through files on Teams? This tool put all of your Teams folders on SharePoint, right into your desktop File Explorer. </p>
+    
+    
+    <p>It will:</p>
+    <ol>
+        <li>Prompt you to fetch the names of all of the Teams that you're a part of</li>
+        <li>Create a folder for the General channel of every team you're a part of in Documents > Links > Teams shortcuts</li>
+        <li>Set up your computer so that it connects to SharePoint every time your computer starts. </li>
+        <ul>
+            <li>It does this by putting the script <code>launch-ie.ps1</code> into your "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" directory.</li>
+        </ul>
+    </ol>
+
+    <h2>How is this different from syncing a folder from SharePoint?</h2>
+    <p><em>This is not the same an syncing</em>. When you 'sync' a folder, it creates a <em>copy</em> of that folder and all of the associated files onto your local machine. Whenever you make changes, OneDrive will work to make sure that your changes are reflected on the cloud copy of those files. </p>
+    <p>With this method, you are <em>directly accessing</em> the files in the cloud. It's like editing the master instead of editing a copy of the master.</p>
+    
+    <h1>How do I do it? </h1>
+    <p>All you need to do is click on <code>install-teams-shortcuts.exe</code> to run it. If that doesn't work, right-click on <code>install-teams-shortcuts.ps1</code> and in the context menu, click on <em>Run with PowerShell</em>.</p>
+
+    <h2>What if that doesn't work?</h2>
+    <p>If that doesn't work, run the following scripts separately, in this order:</p>
+    <ol>
+        <li>teams-shortcuts.ps1</li>
+        <li>launch-ie.ps1</li>
+    </ol>
+    <p>Then, go to your $HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup directory, and put the file launch-ie-ps1 in there. Anything in this folder will run on startup. This means that whenever you start your computer from a shutdown, this script will run and reconnect you to SharePoint and enables the use of your Teams shortcuts.</p>
+    
+    <h2>What if it still doesn't work?</h2>
+    <p>Ask Lucas!</p>
+
+
+</body>
+<script>
+    let anchors = document.getElementsByTagName('a')
+    for (var i = 0; i < anchors.length; i++) {
+        anchors[i].target = '_blank';
+    }
+
+    let files = document.getElementsByClassName('file')
+    let rootUrl = 'https://technip.sharepoint.com/sites/PerthGenesis/_layouts/15/download.aspx?SourceUrl=/sites/PerthGenesis/Shared%20Documents/General/New%20Office/New%20laptops%20-%20remap%20network%20drives/'
+    for (var i = 0; i < files.length; i++) {
+        files[i].href = rootUrl + files[i].name
+    }
+</script>
